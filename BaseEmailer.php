@@ -39,9 +39,9 @@ class BaseEmailer implements EmailerInterface
             
         
        
-        if (\iRAP\CoreLibs\Core::is_cli())
+        if (\iRAP\CoreLibs\Core::isCli())
         {
-            $origin_ip = \iRAP\CoreLibs\Core::get_public_ip();
+            $origin_ip = \iRAP\CoreLibs\Core::getPublicIp();
         }
         else
         {
