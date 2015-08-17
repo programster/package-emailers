@@ -27,34 +27,29 @@ class AwsEmailer implements EmailerInterface
      * 
      * @return AwsEmailer - (constructor)
      */
-    public function __construct(\Aws\Common\Credentials\CredentialsInterface $credentials,
-                                $region,
+    public function __construct($aws_key,
+                                $aws_secret,
+                                SesRegion $region,
                                 $from_email, 
                                 $reply_to_name, 
                                 $reply_to_email, 
                                 $bounce_email = null)
     {
-        
-        $this->m_fromEmail = $from_email;
-        $this->m_replyToName = $reply_to_name;
+        $this->m_fromEmail    = $from_email;
+        $this->m_replyToName  = $reply_to_name;
         $this->m_replyToEmail = $reply_to_email;
+        
         # @TODO use $ses->list_identities to validate that fromEmail has been registered.
         $this->m_bounceEmail = $bounce_email;
         
-        if (!in_array($region, \Aws\Common\Enum\Region::values()))
-        {
-            throw new \Exception("Invalid region specified to AwsEmailer");
-        }
-        
         $sesConfig = array(
-            'credentials' => $credentials,
-            'region'      => $region
+            'credentials' => array('key' => $aws_key, 'secret'  => $aws_secret),
+            'region'  => (string)$region,
+            'version' => 'latest'
         );
-                
         
         $this->m_ses_client = \Aws\Ses\SesClient::factory($sesConfig);
     }
-    
     
     
     /**
@@ -69,8 +64,7 @@ class AwsEmailer implements EmailerInterface
      * @return void - throws exception on error.
      */
     public function send($to_name, $to_email, $subject, $body_message, $html_format = true) 
-    {        
-                
+    {
         $to_email = $to_name . "<" . $to_email . ">";
         
         $destination = array(
@@ -113,5 +107,4 @@ class AwsEmailer implements EmailerInterface
         $this->m_ses_client->sendEmail($options);
     }
 }
-
 
