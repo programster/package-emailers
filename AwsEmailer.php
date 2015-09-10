@@ -44,8 +44,8 @@ class AwsEmailer implements EmailerInterface
         
         $sesConfig = array(
             'credentials' => array('key' => $aws_key, 'secret'  => $aws_secret),
-            'region'  => (string)$region,
-            'version' => 'latest'
+            'region'      => (string) $region,
+            'version'     => 'latest'
         );
         
         $this->m_ses_client = \Aws\Ses\SesClient::factory($sesConfig);
@@ -107,4 +107,3 @@ class AwsEmailer implements EmailerInterface
         $this->m_ses_client->sendEmail($options);
     }
 }
-
