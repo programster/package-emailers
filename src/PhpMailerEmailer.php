@@ -72,7 +72,7 @@ class PhpMailerEmailer implements EmailerInterface
      */
     public function send($to_name, $to_email, $subject, $message, $html_format = true) 
     {
-        $mailer = new PHPMailer();
+        $mailer = new \PHPMailer();
         $mailer->isSMTP();
         $mailer->Host = $this->m_smtpHost;
         $mailer->SMTPAuth = true;
@@ -80,16 +80,16 @@ class PhpMailerEmailer implements EmailerInterface
         $mailer->Password = $this->m_smtpPassword;
         $mailer->SMTPSecure = 'tls';
         $mailer->Port = $this->m_smtpPort;
-
+        
         $mailer->setFrom($this->m_fromEmail, $this->m_fromName);
         $mailer->addAddress($to_email, $to_name);
         $mailer->addReplyTo($this->m_replyToEmail, $this->m_replyToName);
         $mailer->isHTML($html_format);
-
+        
         $mailer->Subject = $subject;
         $mailer->Body    = $message;
         $mailer->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
+        
         if (!$mailer->send()) 
         {
             throw new \Exception("Failed to send email: " . $mailer->ErrorInfo);
