@@ -19,7 +19,12 @@
     },
     "autoload": {
         "psr-4": {
-            "iRAP\\Emailers\\": ""
+            "iRAP\\Emailers\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "iRAP\\Emailers\\Testing\\": "testing"
         }
     }
 }
