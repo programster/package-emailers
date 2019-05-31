@@ -72,7 +72,7 @@ class PhpMailerEmailer implements EmailerInterface
      */
     public function send($to_name, $to_email, $subject, $message, $html_format = true) 
     {
-        $mailer = new \PHPMailer();
+        $mailer = new PHPMailer\PHPMailer\PHPMailer();
         $mailer->isSMTP();
         $mailer->Host = $this->m_smtpHost;
         $mailer->SMTPAuth = true;
