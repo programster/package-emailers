@@ -72,7 +72,7 @@ class PhpMailerEmailer implements EmailerInterface
      */
     public function send($to_name, $to_email, $subject, $message, $html_format = true) 
     {
-        $mailer = new PHPMailer\PHPMailer\PHPMailer();
+        $mailer = new \PHPMailer\PHPMailer\PHPMailer();
         $mailer->isSMTP();
         $mailer->Host = $this->m_smtpHost;
         $mailer->SMTPAuth = true;
@@ -88,7 +88,7 @@ class PhpMailerEmailer implements EmailerInterface
         
         $mailer->Subject = $subject;
         $mailer->Body    = $message;
-        $mailer->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        $mailer->AltBody = strip_tags($message);
         
         if (!$mailer->send()) 
         {
