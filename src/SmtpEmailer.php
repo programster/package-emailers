@@ -83,7 +83,7 @@ class SmtpEmailer implements EmailerInterface
 
         if (PEAR::isError($mail)) 
         {
-            throw new \Exception('Error sending email: ' . $mail->getMessage());
+            throw new ExceptionFailedToSendEmail('Error sending email: ' . $mail->getMessage());
         } 
     }    
 }

@@ -92,10 +92,9 @@ class PhpMailerEmailer implements EmailerInterface
         
         if (!$mailer->send()) 
         {
-            throw new \Exception("Failed to send email: " . $mailer->ErrorInfo);
+            throw new ExceptionFailedToSendEmail("Failed to send email: " . $mailer->ErrorInfo);
         } 
     }
 }
-
 
 
