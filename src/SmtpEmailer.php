@@ -52,6 +52,7 @@ class SmtpEmailer implements EmailerInterface
      * @param string $subject - the subject of the email
      * @param string $message - the body of the email
      * @param bool $html_format - optional - set to false if you must send plaintext, html assumed
+     * @throws ExceptionFailedToSendEmail - if sending the email fails.
      */
     public function send($to_name, $to_email, $subject, $message, $html_format=true)
     {

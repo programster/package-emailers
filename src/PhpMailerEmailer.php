@@ -68,7 +68,7 @@ class PhpMailerEmailer implements EmailerInterface
      * @param string $subject - subject of the email
      * @param string $message - plaintext or html body of the email.
      * @param bool $html_format - whether the email is html or not (defaults to true)
-     * @throws \Exception - if failed to send the email for whatever reason.
+     * @throws ExceptionFailedToSendEmail - if failed to send the email for whatever reason.
      */
     public function send($to_name, $to_email, $subject, $message, $html_format = true) 
     {
@@ -96,5 +96,4 @@ class PhpMailerEmailer implements EmailerInterface
         } 
     }
 }
-
 
