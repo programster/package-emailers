@@ -6,7 +6,7 @@
  * super easily in future.
  */
 
-namespace iRAP\Emailers;
+namespace Programster\Emailers;
 
 class PhpMailerEmailer implements EmailerInterface
 {

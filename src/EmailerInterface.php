@@ -1,6 +1,6 @@
 <?php
 
-namespace iRAP\Emailers;
+namespace Programster\Emailers;
 
 Interface EmailerInterface
 {
